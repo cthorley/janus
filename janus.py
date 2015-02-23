@@ -1,18 +1,18 @@
 """
-Usage: janus add LABEL [--debug] [--tag=TAG]... [--link=URI] [--username=USERNAME] --password=PASSWORD
+Usage: janus add [--debug] LABEL [--tag=TAG]... [--link=URI] [--username=USERNAME] --password=PASSWORD
        janus delete [--debug] LABEL
        janus init [--debug]
-       janus list (labels|tags)
+       janus list [--debug] (labels|tags)
        janus show [--debug] [all|link|password|tags|username] LABEL
        janus tag [--debug] LABEL TAG...
        janus -h | --help
        janus --version
 
 Options:
-       -d, --debug                  Show plaintext yaml and dict before and after execution
+       -d, --debug                  Display state throughout execution
        -l, --link=URI               Include URI in record
        -p, --password=PASSWORD      Provide password for record
-       -t, --tag=TAG...            Associate record with tags
+       -t, --tag=TAG...             Associate record with tags
        -u, --username=USERNAME      Include username in record
 """
 
@@ -52,17 +52,16 @@ def janus_list():
         pass # do interesting things
 
 def janus_show():
-    label = cli_args['LABEL']
-    if not datastore[label]:
+    if not cli_args['LABEL'] in  datastore:
         pass # ERROR
     else:
         print datastore[label]
 
 def janus_tag():
-    label = cli_args['LABEL']
-    if not datastore[label]:
+    if not cli_args['LABEL'] in datastore:
         pass # ERROR
     else:
+        label = cli_args['LABEL']
         for tag in cli_args['--tag']:
             if tag not in datastore[label]['tags']:
                 datastore[label]['tags'].append(tag)
