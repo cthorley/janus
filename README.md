@@ -1,3 +1,3 @@
 # janus
 
-`janus` is a tag-based password manager written in Python.
+`janus` is a tag-based command line password manager written in Python.
