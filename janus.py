@@ -68,7 +68,7 @@ def janus_tag():
                 datastore[label]['tags'].append(tag)
             datastore['tags'].sort()
 
-def open_datastore(cypher):
+def open_datastore(cipher):
     in_file = open('encrypted_file', 'r')
     ciphertext = in_file.read()
     in_file.close()
@@ -82,7 +82,7 @@ def open_datastore(cypher):
         print datastore
     return datastore
 
-def close_datastore(cypher):
+def close_datastore(cipher):
     if cli_args['--debug']:
         print 'YAML dictionary, post-execution:'
         print datastore
@@ -93,7 +93,7 @@ def close_datastore(cypher):
     ciphertext = cipher.encrypt(plaintext)
     out_file = open('encrypted_file', 'w')
     out_file.truncate()
-    out_file.write(cyphertext)
+    out_file.write(ciphertext)
     out_file.close
 
 if __name__ == '__main__':
