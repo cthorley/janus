@@ -1,10 +1,11 @@
 """
-Usage: janus add [--debug] LABEL [--tag=TAG]... [--link=URI] [--username=USERNAME] --password=PASSWORD
-       janus delete [--debug] LABEL
-       janus init [--debug]
-       janus list [--debug] (labels|tags)
-       janus show [--debug] [all|link|password|tags|username] LABEL
-       janus tag [--debug] LABEL TAG...
+Usage: janus [--debug] add LABEL [--tag=TAG]... [--link=URI] [--username=USERNAME] --password=PASSWORD
+       janus [--debug] delete LABEL
+       janus [--debug] init
+       janus [--debug] list (labels|tags)
+       janus [--debug] set LABEL [--tag=TAG]... [--link=URI] [--username=USERNAME] --password=PASSWORD
+       janus [--debug] show LABEL
+       janus [--debug] tag LABEL TAG...
        janus -h | --help
        janus --version
 
