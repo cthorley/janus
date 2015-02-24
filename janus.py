@@ -62,10 +62,11 @@ def janus_list():
             print label
     if cli_args['tags']:
         tags = get_tags()
-        print tags
+        for tag in tags:
+            print tag
 
 def janus_show():
-    if not cli_args['LABEL'] in  datastore:
+    if not cli_args['LABEL'] in datastore:
         pass # ERROR
     else:
         label = cli_args['LABEL']
