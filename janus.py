@@ -18,7 +18,7 @@ Options:
 
 from cryptography.fernet import Fernet
 from docopt import docopt
-import yaml
+import os, yaml
 
 def janus_add():
     if cli_args['LABEL'] in datastore:
@@ -99,7 +99,7 @@ if __name__ == '__main__':
     cli_args = docopt(__doc__, version='janus v0.0.1')
     if cli_args['--debug']:
         print cli_args
-    key = 'jlIEOZJiMsnxNOX8Dd7pybilwwFo2q7QrcBcFotgwXU='
+    key = os.environ['JANUS_KEY']
     cipher = Fernet(key)
     datastore = open_datastore(cipher)
     if cli_args['add']:
