@@ -20,6 +20,17 @@ from cryptography.fernet import Fernet
 from docopt import docopt
 import os, yaml
 
+# This function assumes that datastore[label]['tags']
+# contains a list; this may not be the case.
+def get_tags():
+    tag_list = []
+    for label in datastore:
+        for tag in datastore[label]['tags']:
+            if not tag in tag_list:
+                tag_list.append(tag)
+    tag_list.sort()
+    return tag_list
+
 def janus_add():
     if cli_args['LABEL'] in datastore:
         pass # ERROR
@@ -39,7 +50,8 @@ def janus_delete():
     if not cli_args['LABEL'] in datastore:
         pass # ERROR
     else:
-        del datastore[LABEL]
+        label = cli_args['LABEL']
+        del datastore[label]
 
 def janus_init():
     pass
@@ -49,12 +61,14 @@ def janus_list():
         for label in datastore:
             print label
     if cli_args['tags']:
-        pass # do interesting things
+        tags = get_tags()
+        print tags
 
 def janus_show():
     if not cli_args['LABEL'] in  datastore:
         pass # ERROR
     else:
+        label = cli_args['LABEL']
         print datastore[label]
 
 def janus_tag():
